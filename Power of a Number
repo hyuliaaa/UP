@@ -1,0 +1,25 @@
+#include <iostream>
+using namespace std;
+
+
+int main() {
+
+   int exponent;
+   int base;
+   int result=1;
+
+   cin>>base>>exponent;
+
+   while(exponent!=0)
+   {
+       result*=base;
+       exponent--;
+   }
+
+   cout<<result<<endl;
+
+
+
+  return 0;
+
+}
