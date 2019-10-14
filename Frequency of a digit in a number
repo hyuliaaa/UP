@@ -1,0 +1,31 @@
+#include <iostream>
+using namespace std;
+
+
+int main() {
+
+   int n;
+   cin>>n;
+
+   int num;
+   cin>>num;
+
+   int freq=0;
+
+   while(num!=0)
+   {
+       int lastD=num%10;
+       if(lastD==n)
+       {
+           freq++;
+       }
+       num/=10;
+   }
+
+   cout<<freq;
+
+
+
+  return 0;
+
+}
