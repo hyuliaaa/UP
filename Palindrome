@@ -1,0 +1,36 @@
+//FIRST APPROACH
+#include <iostream>
+using namespace std;
+
+
+int main() {
+
+    int num;
+    cin>>num;
+
+    int copyNum=num;
+    int revNum=0;
+
+
+    while (copyNum!=0)
+    {
+        int digit=copyNum%10;
+        revNum*=10;
+        revNum+=digit;
+        copyNum/=10;
+
+    }
+
+   if(num==revNum)
+   {
+       cout<<"Number is a palindrome ";
+   }
+   else
+   {
+       cout<<"The number is not a palindrome";
+   }
+
+
+  return 0;
+
+}
