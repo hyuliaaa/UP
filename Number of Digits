@@ -1,0 +1,23 @@
+#include <iostream>
+using namespace std;
+
+
+int main() {
+
+   int num;
+   cin>>num;
+
+   int numOfDig=0;
+
+   while(num!=0)
+   {
+       numOfDig++;
+       num/=10;
+   }
+   cout<<"Number of digits: "<<numOfDig;
+
+
+
+  return 0;
+
+}
