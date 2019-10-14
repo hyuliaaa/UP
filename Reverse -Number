@@ -1,0 +1,28 @@
+#include <iostream>
+using namespace std;
+
+
+int main() {
+
+    int num;
+    cin>>num;
+
+    int copyNum=num;
+    int revNum=0;
+
+
+    while (copyNum!=0)
+    {
+        int digit=copyNum%10;
+        revNum*=10;
+        revNum+=digit;
+        copyNum/=10;
+
+    }
+
+   cout<<"Reversed number"<<revNum<<endl;
+
+
+  return 0;
+
+}
