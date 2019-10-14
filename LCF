@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+
+
+int main() {
+
+    int num1;
+    cin>>num1;
+
+    int num2;
+    cin>>num2;
+
+    int lcf=1;
+
+    int minNum;
+    if (num1>num2)
+    {
+        minNum=num2;
+    }
+    else
+    {
+        minNum=num1;
+    }
+
+    for (int i=1; i<=minNum; i++)
+    {
+        if (num1%i==0 && num2%i==0)
+        {
+            lcf=i;
+            break;
+        }
+    }
+    cout<<lcf;
+
+
+
+  return 0;
+
+}
