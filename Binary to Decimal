@@ -1,0 +1,34 @@
+#include <iostream>
+using namespace std;
+#include <cmath>
+
+const int SIZE=8;
+
+int main()
+{
+
+    int binary;
+    cin>>binary;
+    int decimal=0;
+    int i=0;
+
+    while(binary!=0)
+    {
+        int lastDigit=binary%10;
+        decimal+=lastDigit*pow(2,i);
+        i++;
+        binary/=10;
+
+
+    }
+    cout<<decimal;
+
+
+
+
+
+
+
+    return 0;
+
+}
