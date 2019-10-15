@@ -2,9 +2,6 @@
 using namespace std;
 #include <cmath>
 
-///function to check if a number can be
-/// written as sum of three consecutive
-/// integers.
 
 int main()
 {
