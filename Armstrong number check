@@ -1,0 +1,50 @@
+#include <iostream>
+using namespace std;
+#include <cmath>
+
+///function to check if a number can be
+/// written as sum of three consecutive
+/// integers.
+
+int main()
+{
+
+    int n;
+    cin>>n;
+    int armsNum=n;
+
+
+
+    int sum=0;
+    int i=1;
+    int copyNum=n;
+
+    int digitsCount=0;
+
+    while(copyNum!=0)
+    {
+        digitsCount++;
+        copyNum/=10;
+    }
+
+    while(n!=0)
+    {
+        int lastDigit=n%10;
+        sum+=pow(lastDigit, digitsCount);
+        n/=10;
+
+    }
+
+    if(armsNum==sum)
+    {
+        cout<<"Armstrong num";
+    }
+    else
+    {
+        cout<<"Not";
+    }
+
+
+    return 0;
+
+}
