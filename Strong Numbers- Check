@@ -1,0 +1,43 @@
+#include <iostream>
+using namespace std;
+#include <cmath>
+
+
+
+int main()
+{
+
+    int n;
+    cin>>n;
+    int sum=0;
+    int origNum=n;
+
+    while(n!=0)
+    {
+        int digit=n%10;
+        int fact=1;
+        for (int i=1; i<=digit; i++)
+        {
+            fact=fact*i;
+        }
+        sum+=fact;
+        n/=10;
+    }
+
+    if(origNum==sum)
+    {
+        cout<<"The number is a strong number";
+    }
+    else
+    {
+        cout<<"The number is not a strong numbers";
+    }
+
+
+
+
+
+
+    return 0;
+
+}
