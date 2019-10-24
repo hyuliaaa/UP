@@ -1,0 +1,33 @@
+#include<iostream>
+#include <cmath>
+
+using namespace std;
+
+int main()
+
+{
+
+    int num;
+    cin>>num;
+    int i=1;
+    int binary=0;
+
+
+    while(num!=0)
+    {
+        int digit=num%2;
+        binary+=digit*i;
+        i*=10;
+        num/=2;
+
+    }
+    cout<<binary;
+
+
+
+    return 0;
+}
+
+
+
+
