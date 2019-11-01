@@ -1,0 +1,147 @@
+#include<iostream>
+#include <cmath>
+
+using namespace std;
+
+const int SZ=100;
+
+void inputArray(int arr[], int n)
+{
+    for(int i=0; i<n; i++)
+    {
+        cin>>arr[i];
+    }
+}
+
+
+
+void printArray(int arr[], int n)
+{
+    for(int i=0; i<n; i++)
+    {
+        cout<<arr[i]<<" ";
+    }
+}
+
+void reverseArray(int arr[], int n)
+{
+    for(int i=0; i<n/2; i++)
+    {
+        int temp=arr[i];
+        arr[i]=arr[n-1-i];
+        arr[n-1-i]=temp;
+    }
+}
+
+bool findElement(int arr[], int n, int searchElement)
+{
+    for(int i=0; i<n; i++)
+    {
+        if(searchElement==arr[i])
+        {
+            return true;
+        }
+    }
+    return false;
+
+}
+
+void sortArray(int arr[], int n)
+{
+    for(int i=0; i<n ; i++)
+    {
+        for(int j=0; j<n-1; j++)
+            {
+                if(arr[j]>arr[j+1])
+                {
+                    int temp=arr[j+1];
+                    arr[j+1]=arr[j];
+                    arr[j]=temp;
+                }
+            }
+    }
+}
+
+
+
+
+
+int main()
+{
+
+    int arr[SZ];
+    int n;
+    cin>>n;
+    inputArray(arr,n);
+    printArray(arr,n);
+    cout<<endl;
+
+    int oddArr[SZ];
+    int evenArr[SZ];
+
+    sortArray(arr,n);
+    printArray(arr,n);
+    int evenCount=0;
+    cout<<endl;
+
+    for(int i=0; i<n; i++)
+    {
+        if(arr[i]%2==0)
+        {
+            evenArr[evenCount]=arr[i];
+            evenCount++;
+        }
+    }
+
+    printArray(evenArr,evenCount);
+    cout<<endl;
+
+    int oddCount=0;
+
+      for(int i=0; i<n; i++)
+    {
+        if(arr[i]%2!=0)
+        {
+            oddArr[oddCount]=arr[i];
+            oddCount++;
+        }
+    }
+
+   printArray(oddArr,oddCount);
+   cout<<endl;
+
+
+   int mergedArray[SZ+SZ];
+
+   for(int i=0; i<evenCount; i++)
+   {
+       mergedArray[i]=evenArr[i];
+   }
+
+
+   for(int k=0, i=evenCount; i<evenCount+oddCount; i++, k++)
+   {
+       mergedArray[i]=oddArr[k];
+   }
+
+
+   printArray(mergedArray,evenCount+oddCount);
+
+
+
+
+
+
+
+
+
+
+
+
+
+    return 0;
+}
+
+
+
+
