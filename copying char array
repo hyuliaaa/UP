@@ -1,0 +1,24 @@
+#include <iostream>
+const int SZ=100;
+
+using namespace std;
+
+int main()
+{
+    char arr[SZ];
+    cin.getline(arr,SZ);
+
+    char  copiedAr[SZ];
+    for (int i=0; arr[i]; i++)
+    {
+        copiedAr[i]=arr[i];
+    }
+    cout<<copiedAr;
+
+
+
+
+
+
+    return 0;
+}
