@@ -1,0 +1,14 @@
+#include <iostream>
+#include <stack>
+#include <string>
+
+int main()
+{
+    
+    int **A[3];//only A is in the stack
+    A=new int*[3]//array of pointers in the heap
+    A[0]=new int[4];
+    A[1]=new int [4];
+    A[2]=new int[4];
+    return 0;
+}
