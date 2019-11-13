@@ -9,10 +9,13 @@ int main()
     cin.getline(arr,SZ);
 
     char  copiedAr[SZ];
-    for (int i=0; arr[i]; i++)
+    int i=0;
+    for ( i=0; arr[i]; i++)
     {
         copiedAr[i]=arr[i];
     }
+    
+    copiedAr[i]='\0';
     cout<<copiedAr;
 
 
