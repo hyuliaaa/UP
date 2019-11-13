@@ -1,0 +1,14 @@
+#include <iostream>
+#include <stack>
+#include <string>
+
+int main()
+{
+    
+    int *A[3];///array of pointers, they will be pointing on the heap, and there we will ccreate a 2D array
+    
+    A[0]=new int[4];
+    A[1]=new int [4];
+    A[2]=new int[4];
+    return 0;
+}
