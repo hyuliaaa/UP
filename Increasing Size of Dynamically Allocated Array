@@ -1,0 +1,28 @@
+#include <iostream>
+#include <stack>
+#include <string>
+
+int main()
+{
+
+  int *p;
+  int *q;
+
+  p=new int[3];
+  p[0]=5;
+  p[1]=6;
+  p[2]=7;
+
+  q=new int[10];
+  for(int i=0; i<3; i++)
+  {
+      q[i]=p[i];
+  }
+
+  p=q;
+  delete p;
+  q=nullptr;
+
+
+    return 0;
+}
