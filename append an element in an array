@@ -1,0 +1,30 @@
+#include <iostream>
+const int SZ=100;
+
+using namespace std;
+int main()
+{
+    int arr[SZ];
+    int n;
+    cin>>n;
+
+    for(int i=0; i<n; i++)
+    {
+        cin>>arr[i];
+    }
+    int x;
+    cin>>x;
+    //appending element at last place in an array
+    arr[n]=x;
+    n++;
+
+    for(int i=0; i<n; i++)
+    {
+        cout<<arr[i]<<" ";
+    }
+
+
+
+
+    return 0;
+}
