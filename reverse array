@@ -1,18 +1,16 @@
-#include<iostream>
+#include <iostream>
 #include <cmath>
+const int SZ=100;
 
 using namespace std;
 
-const int SZ=100;
-
-void inputArray(int arr[], int n)
+void inputArray(int arr[], int len)
 {
-    for(int i=0; i<n; i++)
+    for(int i=0; i<len; i++)
     {
         cin>>arr[i];
     }
 }
-
 
 
 void printArray(int arr[], int n)
@@ -27,30 +25,30 @@ void reverseArray(int arr[], int n)
 {
     for(int i=0; i<n/2; i++)
     {
-        int temp=arr[i];
-        arr[i]=arr[n-1-i];
-        arr[n-1-i]=temp;
+        swap(arr[i],arr[n-1-i]);
+    }
+}
+
+void reverseArr(int arr[], int n)
+{
+    for(int i=0, j=n-1; i<j; i++, j--)
+    {
+        swap(arr[i],arr[j]);
     }
 }
 
 
-
-
 int main()
 {
-
     int arr[SZ];
-    int n;
-    cin>>n;
-    inputArray(arr,n);
-
-    printArray(arr,n);
+    int len;
+    cin>>len;
+    inputArray(arr,len);
+    reverseArray(arr,len);
     cout<<endl;
-    reverseArray(arr,n);
-    printArray(arr,n);
+    reverseArr(arr,len);
 
-
-
+    printArray(arr,len);
 
 
 
@@ -59,7 +57,3 @@ int main()
 
     return 0;
 }
-
-
-
-
