@@ -1,0 +1,67 @@
+#include <iostream>
+#include <cmath>
+const int SZ=100;
+
+using namespace std;
+
+void inputArray(int arr[], int len)
+{
+    for(int i=0; i<len; i++)
+    {
+        cin>>arr[i];
+    }
+}
+
+
+void printArray(int arr[], int n)
+{
+    for(int i=0; i<n; i++)
+    {
+        cout<<arr[i]<<" ";
+    }
+}
+
+bool binarySearch(int arr[], int len, int key)
+{
+    int l=0;
+    int h=len-1;
+    while(l<=h)
+    {
+        int middle=(floor(h+l)/2);
+        if(arr[middle]==key)
+        {
+            return true;
+        }
+        else if (key<arr[middle])
+        {
+            h=middle-1;
+        }
+        else
+        {
+            l=middle+1;
+        }
+
+    }
+    return false;
+}
+
+
+
+int main()
+{
+    int arr[SZ];
+    int len;
+    cin>>len;
+    inputArray(arr,len);
+    cout<<binarySearch(arr,len, 6);
+    cout<<endl;
+
+    printArray(arr,len);
+
+
+
+
+
+
+    return 0;
+}
