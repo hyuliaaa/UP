@@ -1,0 +1,51 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+const int SZ=100;
+
+void removeFirstOcc(char *arr, char c)
+{
+    int j=0;
+    char A[SZ];
+    for(int i=0; arr[i]; i++)
+    {
+        if(arr[i]!=c)
+        {
+            A[j]=arr[i];
+            j++;
+        }
+    }
+    for(int i=0; A[i]; i++)
+    {
+        cout<<A[i];
+    }
+}
+
+
+
+int main()
+{
+
+  char arr[SZ];
+
+  cout<<"Enter first array: ";
+  cin.getline(arr,SZ);
+  cout<<endl;
+  char c;
+  cin>>c;
+
+ removeFirstOcc(arr,c);
+
+
+
+
+
+
+
+
+
+
+
+
+    return 0;
+}
