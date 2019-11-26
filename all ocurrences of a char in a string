@@ -1,0 +1,50 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+const int SZ=100;
+
+void allOcurrences(char *arr, char c)
+{
+    int indexes[10];
+    int j=0;
+    for(int i=0; arr[i]; i++)
+    {
+        if(arr[i]==c)
+        {
+            indexes[j]=i;
+            j++;
+        }
+    }
+
+    cout<<c<<" is found at ";
+    for(int i=0; i<j; i++)
+    {
+        cout<<indexes[i]<<" ";
+    }
+}
+
+int main()
+{
+
+  char arr[SZ];
+
+  cout<<"Enter first array: ";
+  cin.getline(arr,SZ);
+  cout<<endl;
+
+  char c;
+  cin>>c;
+
+  allOcurrences(arr,c);
+
+
+
+
+
+
+
+
+
+
+    return 0;
+}
