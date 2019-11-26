@@ -1,0 +1,67 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+const int SZ=100;
+
+bool areAnagram(char *arr, char *arr2, int arrS, int arr2S)
+{
+    
+    int H[26]={0};
+    if(arrS!=arr2S)
+    {
+        return false;
+    }
+    else
+    {
+
+        for(int i=0; arr[i]; i++)
+        {
+            H[arr[i]-97]+=1;
+        }
+
+        for(int  i=0; arr2[i]; i++)
+        {
+            H[arr2[i]-97]-=1;
+            if(H[i]<0)
+            {
+                return false;
+            }
+
+        }
+        for(int i=0; i<26; i++)
+        {
+            if(H[i]!=0)
+            {
+                return false;
+            }
+
+        }
+        return true;
+
+
+    }
+}
+
+
+int main()
+{
+
+  char arr[SZ];
+  char arr2[SZ];
+  cout<<"Enter first array: ";
+  cin.getline(arr,SZ);
+  cout<<endl;
+  cout<<"Enter second array: ";
+  cin.getline(arr2,SZ);
+
+
+  int arrS=strlen(arr);
+  int arr2S=strlen(arr2);
+  cout<<areAnagram(arr,arr2,arrS,arr2S);
+
+
+
+
+
+    return 0;
+}
