@@ -1,0 +1,90 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+const int SZ=100;
+
+void inputMatrix(int A[][SZ], int n)
+{
+    for(int i=0; i<n ; i++)
+    {
+        for(int j=0; j<n; j++)
+        {
+            cin>>A[i][j];
+        }
+    }
+}
+//program which prints the point which is the smallest on a row and greatest in a column
+//a lot of thought here!!
+void sedlovatochka(int A[][SZ], int n)
+{
+    int j;
+    int minElement=INT_MAX;
+    int maxElement=INT_MIN;
+    for(int i=0; i<n; i++)
+    {
+        minElement=INT_MAX;
+        maxElement=INT_MIN;
+        for(j=0; j<n; j++)
+        {
+            if(A[i][j]<minElement)
+            {
+                minElement=A[i][j];
+
+            }
+
+
+        }
+        for(int j=0; j<n; j++)
+        {
+            if(minElement==A[i][j])
+            {
+                // cout<<"Min el "<<minElement<<" at postion "<<j<<endl;
+                for(int k=0; k<n; k++)
+                {
+                    if(A[k][j]>maxElement)
+                    {
+                        maxElement=A[k][j];
+                        // cout<<"maxEl "<<maxElement<<endl;
+                    }
+
+                }
+
+            }
+
+
+        }
+        if(minElement==maxElement)
+        {
+            cout<<maxElement;
+        }
+
+
+
+    }
+
+
+}
+
+int main()
+{
+    int n;
+    cin>>n;
+    int A[SZ][SZ];
+    inputMatrix(A,n);
+
+
+    sedlovatochka(A,n);
+
+
+
+
+
+
+
+
+
+
+
+
+    return 0;
+}
