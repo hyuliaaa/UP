@@ -1,0 +1,54 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+const int SZ=100;
+
+void inputData(int *A, int n)
+{
+    for (int i=0; i<n; i++)
+    {
+        cin>>A[i];
+    }
+}
+
+int numberOfEqualElements(int *A, int *B, int n)
+{
+    int counter=0;
+    for(int i=0; i<n; i++)
+    {
+        for(int j=0; j<n; j++)
+        {
+            if(A[i]==B[j] && A[i]!=A[i+1])
+            {
+                counter++;
+            }
+        }
+    }
+    return counter;
+}
+
+int main()
+{
+    int n;
+    cin>>n;
+    int A[SZ];
+    int B[SZ];
+
+    inputData(A,n);
+    inputData(B,n);
+    cout<<numberOfEqualElements(A,B,n);
+
+
+
+
+
+
+
+
+
+
+
+
+
+    return 0;
+}
