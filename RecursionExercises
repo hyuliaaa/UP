@@ -1,0 +1,154 @@
+// ConsoleApplication3.cpp : This file contains the 'main' function. Program execution begins and ends there.
+//
+
+#include "pch.h"
+#include <iostream>
+using namespace std;
+
+
+void printNum(int n)
+{
+	if (n == 0)
+	{
+		cout << n << " ";
+		return;
+		
+	}
+
+
+	cout << n << " ";
+	printNum(n - 1);
+	
+
+}
+
+void printNum(int i, int n)
+{
+	if (i == n)
+	{
+		return;
+	}
+	cout << i << " ";
+	printNum(i + 1, n);
+}
+
+int fact(int n)
+{
+	if (n == 0)
+		return 1;
+	else
+		return n * fact(n - 1);
+
+
+}
+
+int sum(int n)
+{
+	if (n == 0)
+		return 0;
+	
+	return n + sum(n - 1);
+}
+	
+int sumK(int n, int k)
+{
+	if (n <= 0)
+		return 0;
+	return n + sumK(n - k, k);
+}
+
+void printArray(int *arr, int start, int end)
+{
+	if (start >= end)
+		return;
+	cout << arr[start] << " ";
+	return printArray(arr, start + 1, end);
+
+
+}
+
+void printReverse(int *arr, int start, int end)
+{
+	if (start > end)
+		return;
+	return printReverse(arr, start + 1, end);
+	cout << arr[start] << " ";
+
+}
+
+
+int euclideanAlgo(int n, int m)
+{
+	if (n == 0)
+		return m;
+	else if (n == 0)
+		return m;
+	else if (n > m)
+		return euclideanAlgo(n - m, m);
+	else if (m > n)
+		return euclideanAlgo(n, m - n);
+
+}
+
+void printDigits(int n)
+{
+	if (n == 0)
+	{
+		
+		return;
+	}
+	
+	printDigits(n / 10);
+	cout << n % 10 << " ";
+
+}
+
+
+int sumDigits(int n)
+{
+	if (n == 0)
+		return 0;
+	return n % 10 + sumDigits(n / 10);
+
+}
+
+int numberOfWays(int n)
+{
+	int counter = 0;
+		for(int i=0; i<n; i++)
+		{
+			for (int j = 0; j < n; j++)
+			{
+				for (int k = 0; k < n; k++)
+				{
+					if (n == i + k + j)
+					{
+						counter++;
+					}
+				}
+
+			}
+		}
+		return counter;
+}
+
+int main()
+{
+	int n;
+	cin >> n;
+	
+	//printNum(n);
+	//printNum(1, 5);
+	//cout << fact(n);
+	//cout << sumK(n,2);
+	//cout << euclideanAlgo(n, m);
+	//cout << sumDigits(n);
+	cout << numberOfWays(n);
+
+
+	
+	
+	//printReverse(arr, 0, sz);
+
+}
+
