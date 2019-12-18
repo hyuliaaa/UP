@@ -1,0 +1,74 @@
+#include <iostream>
+#include <cstring>
+
+using namespace std;
+const int SZ=100;
+
+bool findWord(char C[SZ][SZ], char* word, int x, int y, int length)
+{
+	int len = strlen(word);
+
+	if (length == len)	return true;
+
+
+	if (x < 0 || y < 0 || x >= 4 || y >= 4)	return false;
+
+
+	if (C[x][y] == word[length])
+	{
+
+		char temp = C[x][y];
+		C[x][y] = '#';
+		bool rest = findWord(C, word, x - 1, y, length + 1) ||
+			findWord(C, word, x + 1, y, length + 1) ||
+			findWord(C, word, x, y - 1, length + 1) ||
+			findWord(C, word, x, y + 1, length + 1);
+
+		C[x][y] = temp;
+		return rest;
+	}
+	else
+        return false;
+}
+
+
+bool matchWord(char C[SZ][SZ], char* word)
+{
+	int len = strlen(word);
+
+
+	if (len > 4 * 4) return false;
+
+
+	for (int i = 0; i < 4; i++)
+	{
+		for (int j = 0; j < 4; j++)
+		{
+			if (C[i][j] == word[0])
+			{
+				if (findWord(C, word, i, j, 0)) return true;
+			}
+		}
+	}
+	return false;
+}
+
+
+int main()
+{
+
+   char matrix[SZ][SZ]={
+    "dogg",
+    "catr",
+    "trid",
+    "ftyi", 
+   };
+
+   char word[SZ];
+   cin.getline(word,SZ);
+
+   cout<<matchWord(matrix,word);
+
+
+    return 0;
+}
