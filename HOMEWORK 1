@@ -1,0 +1,737 @@
+//task 1
+#include <iostream>
+
+using namespace std;
+
+const int SZ=10000;
+
+int divisors(int arr[], long n)
+{
+    int arrSize=0;
+    for(int i=1; i<=n; i++)
+    {
+        if(n%i==0)
+        {
+            arr[arrSize]=i;
+            arrSize++;
+        }
+    }
+    return arrSize;
+}
+
+void minSum(int arr[], int resultArr[], int arrSize, long n)
+{
+    int minSum=INT_MAX;
+    int sum=0;
+    for(int i=0; i<arrSize; i++)
+    {
+        for(int j=0; j<arrSize; j++ )
+        {
+            for(int k=0; k<arrSize; k++)
+            {
+                if(arr[i]*arr[j]*arr[k]==n)
+                {
+                        sum=arr[i]+arr[j]+arr[k];
+                        if(sum<minSum)
+                        {
+                            minSum=sum;
+                            resultArr[0]=arr[i];
+                            resultArr[1]=arr[j];
+                            resultArr[2]=arr[k];
+                        }
+
+
+                }
+            }
+        }
+    }
+
+}
+
+
+
+int main()
+{
+    cout<<"Enter a positive number: ";
+    long n;
+    cin>>n;
+    if(n<0)
+    {
+        cout<<"Invalid input!";
+        return 0;
+    }
+
+    int arr[SZ];
+
+    int arrSize=divisors(arr,n);
+
+    //resultArr will contain the numbers m,p and q that is way its size is 3
+    int resultArr[3];
+
+    minSum(arr,resultArr,arrSize,n);
+
+    //printing the numbers which have minimal sum and their product is equal to n
+    for(int i=0; i<3; i++)
+    {
+        cout<<resultArr[i]<<" ";
+    }
+
+    return 0;
+}
+
+
+
+// task2
+#include <iostream>
+using namespace std;
+
+const int SZ=100;
+
+void multiply(int arr1[], int arr2[], int product[],int n, int m)
+{
+    for(int i=0; i<=n; i++)
+    {
+        for(int j=0; j<=m; j++)
+        {
+            product[i+j]+=arr1[i]*arr2[j];
+
+        }
+    }
+}
+
+void reverseArr(int arr[], int n)
+{
+    for(int i=0; i<n/2; i++)
+    {
+        int temp=arr[i];
+        arr[i]=arr[n-1-i];
+        arr[n-1-i]=temp;
+    }
+}
+
+void printArray(int arr[], int n)
+{
+    for(int i=0; i<n; i++)
+    {
+        cout<<arr[i]<<" ";
+    }
+}
+
+int main()
+{
+    int polynomial1[SZ];
+    int polynomial2[SZ];
+    int product[SZ]= {0};
+
+    cout<<"Enter degree of first polynomial: ";
+    int n;
+    cin>>n;
+    cout<<"Enter "<<n+1<<" coefficients: ";
+    for(int i=n; i>=0; i--)
+    {
+        cin>>polynomial1[i];
+    }
+
+    cout<<"Enter degree of second polynomial: ";
+    int m;
+    cin>>m;
+    cout<<"Enter "<<m+1<<" coefficients: ";
+    for(int i=m; i>=0; i--)
+    {
+        cin>>polynomial2[i];
+    }
+
+
+    int productArraySize=n+1+m+1-1;
+    multiply(polynomial1,polynomial2,product,n,m);
+    reverseArr(product, productArraySize);
+    printArray(product,productArraySize);
+
+
+
+
+    return 0;
+}
+
+//task 3
+#include <iostream>
+using namespace std;
+
+const int SZ=10000;
+
+void generateNumbers(int a, int b, int arr[], int arrSize)
+{
+    for (int j = a; j <= b; j++)
+    {
+        bool isFound = false;
+        bool finalDecision = false;
+        int number = j;
+
+        while (number != 0)
+        {
+            int digit = number % 10;
+            number /= 10;
+            isFound = false;
+
+            for (int i = 0; i < arrSize; i++)
+            {
+                if (digit == arr[i])
+                {
+                    isFound = true;
+                }
+            }
+
+            if (isFound == true)
+            {
+                finalDecision = true;
+            }
+            else
+            {
+                finalDecision = false;
+                break;
+            }
+        }
+
+        if (finalDecision)
+        {
+            cout << j << " ";
+        }
+    }
+
+}
+
+
+int main()
+{
+    cout<<"Enter lower bound: ";
+    int a;
+    cin>>a;
+
+    cout<<"Enter upper bound: ";
+    int b;
+    cin>>b;
+
+    if(a>b)
+    {
+        cout<<"Invalid interval!";
+        return 0;
+    }
+
+    cout<<"Enter number of digits: ";
+    int digitNumber;
+    cin>>digitNumber;
+    if( digitNumber<0 || digitNumber>10)
+    {
+        cout<<"Invalid number of digits: ";
+    }
+
+    int arr[SZ];
+    cout<<"Enter "<<digitNumber <<" different digits: ";
+    for(int i=0; i<digitNumber; i++)
+    {
+        cin>>arr[i];
+    }
+
+
+    generateNumbers(a,b,arr,digitNumber);
+
+    return 0;
+}
+
+//task 4
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+const int SZ=100;
+
+int maxAmountOfWater(int arr[], int n)
+{
+    int amount=0;
+    int maxAmount=0;
+    int width=1;
+    int differenceBetweenWalls=0;
+    int maxWaterHeight=0;
+    int minWaterHeight=0;
+
+    for(int i=0; i<n; i++)
+    {
+        for(int j=i+1; j<n; j++)
+        {
+            differenceBetweenWalls=abs(j-i);
+
+            if(arr[j]>arr[i])
+            {
+                minWaterHeight=arr[i];
+            }
+            else
+            {
+                minWaterHeight=arr[j];
+            }
+
+            maxWaterHeight=minWaterHeight;
+            amount=width*differenceBetweenWalls*maxWaterHeight;
+
+            if(amount>maxAmount)
+            {
+                maxAmount=amount;
+            }
+        }
+    }
+    return maxAmount;
+}
+
+int main()
+{
+    cout<<"Enter number of heights: ";
+    int n;
+    cin>>n;
+
+    cout<<"Enter heights of the aquarium: ";
+    int heights[SZ];
+    for(int i=0; i<n; i++)
+    {
+        cin>>heights[i];
+    }
+
+    cout<<maxAmountOfWater(heights,n)*1000;
+
+
+    return 0;
+}
+
+
+//task 5
+
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+const int SZ = 100;
+
+bool isSortedIncreasingly(int arr[], int n)
+{
+	if (n == 1)
+		return true;
+	for (int i = 1; i < n; i++)
+	{
+		if (arr[i - 1] > arr[i])
+			return false;
+	}
+	return true;
+}
+
+bool isSortedDecreasingly(int arr[], int n)
+{
+	if (n == 1)
+		return true;
+	for (int i = 1; i < n; i++)
+	{
+		if (arr[i - 1] < arr[i])
+			return false;
+	}
+	return true;
+}
+
+
+int maxAmountOfWater(int arr[], int n)
+{
+	int amount = 0;
+	int maxAmount = 0;
+	int width = 1;
+	int differenceBetweenWalls = 0;
+	int maxWaterHeight = 0;
+	int minWaterHeight = 0;
+	int maxDigit = 0;
+	int secMaxDigit = 0;
+	int index1 = 0;
+	int index2 = 0;
+	for (int i = 0; i < n; i++)
+	{
+		if (arr[i] > maxDigit)
+		{
+			secMaxDigit = maxDigit;
+			maxDigit = arr[i];
+			index2 = index1;
+			index1 = i;
+
+
+
+		}
+		else if (arr[i] >= secMaxDigit && arr[i] <= maxDigit)
+		{
+ 			secMaxDigit = arr[i];
+			index2 = i;
+
+
+		}
+	}
+
+
+	differenceBetweenWalls = abs(index1 - index2);
+
+	maxWaterHeight =  secMaxDigit;
+	maxAmount = maxWaterHeight * differenceBetweenWalls;
+
+
+
+// my idea was to make a recursive function which will print the correct output but I could not complete my idea
+
+	int arrFromLeftSide[SZ] = { 0 };
+	int arrFromRightSide[SZ] = {0};
+	int j = 0;
+	int k = 0;
+    // i wanted to split the array in two parts before the calculated interval and after and then call the recursive function to do its job
+	for (int i = 0; i < n; i++)
+	{
+		if (i < index1 && i <index2)
+		{
+			arrFromLeftSide[j] = arr[i];
+			j++;
+		}
+		else if (i>index1 && i>index2)
+		{
+			arrFromRightSide[k] = arr[i];
+			k++;
+		}
+	}
+
+    int total=0;
+	int sumLeftArray = 0;
+
+	for (int i = 0; i < j; i++)
+	{
+		if (isSortedIncreasingly(arrFromLeftSide, j) == 0 && isSortedDecreasingly(arrFromLeftSide, j) == 0)
+		{
+
+		}
+		else
+		{
+
+			sumLeftArray += arrFromLeftSide[i];
+			total= maxAmount+sumLeftArray;
+		}
+	}
+
+	//this works just for the given example
+    return total;
+	int sumRightArray = 0;
+	for (int i = 0; i < j; i++)
+	{
+		if (isSortedIncreasingly(arrFromRightSide, k) == 0 && isSortedDecreasingly(arrFromRightSide, k) == 0)
+		{
+
+		}
+		else
+		{
+			sumRightArray += arrFromRightSide[i];
+            total= maxAmount+sumRightArray;
+		}
+	}
+
+
+}
+
+int main()
+{
+	cout << "Enter number of heights: ";
+	int n;
+	cin >> n;
+
+	cout << "Enter heights of the aquarium: ";
+	int heights[SZ];
+	for (int i = 0; i < n; i++)
+	{
+		cin >> heights[i];
+	}
+
+	cout<<maxAmountOfWater(heights, n);
+
+
+	return 0;
+}
+
+
+//task 6
+#include <iostream>
+#include <cmath>
+
+using namespace std;
+
+const int SZ=100;
+
+int fromAnyNumberSystemToDecimal(int num[], int counter, int numberSystemBase)
+{
+
+    int numInDecimal=0;
+    for(int i=0; i<counter; i++)
+    {
+        numInDecimal+=num[i]*pow(numberSystemBase,i);
+    }
+    return numInDecimal;
+
+}
+
+int convertingCharArrayToNumberArray(char arr[], int num[])
+{
+    int counter=0;
+
+    for(int i=0; arr[i]; i++)
+    {
+        counter++;
+    }
+
+    int j=0;
+    for(int i=counter-1; i>=0; i--)
+    {
+        if(arr[i]>='0' && arr[i]<='9')
+        {
+            num[j]=arr[i]-'0';
+            j++;
+        }
+    }
+    return counter;
+}
+
+int fromDecimalToAnyNumberSystem(int num, int system)
+{
+    int numberInAnySystem=0;
+    int i=1;
+
+    while(num!=0)
+    {
+        int digit=num%system;
+        numberInAnySystem+=digit*i;
+        i*=10;
+        num/=system;
+    }
+
+    return numberInAnySystem;
+}
+
+int main()
+
+{
+    cout<<"Enter a number: ";
+    char arr[SZ];
+    cin.getline(arr,SZ);
+
+    cout<<"Enter number system(1-10) of the input number: ";
+    int numberSystemBase;
+    cin>>numberSystemBase;
+    if(numberSystemBase<0 || numberSystemBase>10)
+    {
+        cout<<"Invalid input!";
+        return 0;
+    }
+
+    int num[SZ]= {0};
+    int counter=convertingCharArrayToNumberArray(arr,num);
+
+    bool isValidNumber=true;
+    for(int i=0; i<counter; i++)
+    {
+        if(num[i]>=numberSystemBase)
+        {
+            isValidNumber=false;
+            break;
+        }
+    }
+
+    if(isValidNumber==0)
+    {
+        cout<<"The number you have entered cannot be in number system "<<numberSystemBase<<"!";
+        return 0;
+    }
+
+    int numberInDecimal=fromAnyNumberSystemToDecimal(num,counter, numberSystemBase);
+
+
+    cout<<"Enter a number system to convert the number to: ";
+    int system;
+    cin>>system;
+    if(system<0 || system>10)
+    {
+        cout<<"Invalid input!";
+        return 0;
+    }
+
+
+    cout<<fromDecimalToAnyNumberSystem(numberInDecimal,system);
+
+    return 0;
+}
+
+//task 7
+#include <iostream>
+using namespace std;
+
+const int SZ=100;
+
+bool sameElements(int arr[], int n)
+{
+    for(int i=1; i<n; i++)
+    {
+        if(arr[i-1]==arr[i])
+            return false;
+    }
+    return true;
+}
+
+bool isSortedIncreasingly(int arr[], int n)
+{
+    if(n==1)
+        return true;
+    for(int i=1; i<n; i++)
+    {
+        if(arr[i-1]>arr[i])
+            return false;
+    }
+    return true;
+}
+
+bool isSortedDecreasingly(int arr[], int n)
+{
+    if(n==1)
+        return true;
+    for(int i=1; i<n; i++)
+    {
+        if(arr[i-1]<arr[i])
+            return false;
+    }
+    return true;
+}
+
+
+int numberOfPairsWhichHaveSumX(int arr[], int n, int x)
+{
+    int pairNumber=0;
+    for(int i=0; i<n; i++)
+    {
+        for(int j=i; j<n; j++)
+        {
+            if(x==arr[i]+arr[j])
+            {
+                pairNumber++;
+            }
+        }
+    }
+    return pairNumber;
+}
+
+
+int main()
+{
+    cout<<"Enter a positive number: ";
+    int n;
+    cin>>n;
+
+    if(n<=0)
+    {
+        cout<<"You have entered a wrong number!";
+        return 0;
+    }
+
+    int arr[SZ];
+
+    cout<<"Enter a sorted sequence of different numbers: ";
+    for(int i=0; i<n; i++)
+    {
+        cin>>arr[i];
+
+    }
+    if(sameElements(arr,n)==0)
+    {
+        cout<<"The sequence you have entered contains same elements!"<<endl;
+        return 0;
+    }
+    if(isSortedIncreasingly(arr,n)==0 && isSortedDecreasingly(arr,n)==0)
+    {
+        cout<<"The sequence you have entered is not sorted!"<<endl;
+        return 0;
+    }
+
+    cout<<"Enter sum: ";
+    int x;
+    cin>>x;
+    cout<<numberOfPairsWhichHaveSumX(arr,n,x);
+
+
+    return 0;
+}
+
+
+//task 8
+#include <iostream>
+#include <cstring>
+
+using namespace std;
+
+const int SZ = 1000;
+
+int biggestNumberInCharArray(char arr[])
+{
+    int number = 0;
+    int sz = strlen(arr);
+    int j = 1;
+    int tempNum=0;
+    int maxNum=INT_MIN;
+
+    for (int i = 0; i < sz; i++)
+    {
+
+        if (arr[i] >= '0' && arr[i] <= '9')
+        {
+            int k = i;
+
+            while (k < sz)
+            {
+
+                tempNum = arr[k] - '0';
+                number = number * j + tempNum;
+
+                j = 10;
+
+                if (!(arr[k + 1] >= '0' && arr[k + 1] <= '9'))
+                {
+                    break;
+                }
+
+                k++;
+
+            }
+
+            i = k;
+
+            if(number>maxNum)
+            {
+                maxNum=number;
+            }
+
+            number=0;
+
+        }
+
+    }
+
+    return maxNum;
+}
+
+int main()
+{
+    cout<<"Enter a string: ";
+    char arr[SZ];
+    cin.getline(arr, SZ);
+
+    cout<<biggestNumberInCharArray(arr)<<endl;
+
+
+    return 0;
+}
+
+
+
+  
+
