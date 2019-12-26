@@ -1,0 +1,50 @@
+
+
+#include "pch.h"
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+const int SZ = 1000;
+
+void convertSentenceTo2Dmatrix(char matrix[][SZ], char sentence[])
+{
+	int j = 0;
+	int len = strlen(sentence);
+	for (int i = 0; i<len; i++)
+	{
+		
+		int k = 0;
+		int h = i;
+	while (sentence[h] != ' ' && sentence[h]!='\0')
+		{
+			matrix[j][k] = sentence[h];
+			k++;
+			h++;
+		}
+		sentence[h] = '\0';
+		j++;
+		i = h;
+	}
+
+	
+
+
+	
+}
+int main()
+{
+
+	char matrix[SZ][SZ];
+
+	
+
+	char sentence[SZ];
+	cin.getline(sentence, SZ);
+
+	convertSentenceTo2Dmatrix(matrix, sentence);
+
+
+
+	return 0;
+}
