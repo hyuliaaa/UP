@@ -1,0 +1,66 @@
+#include <iostream>
+
+using namespace std;
+
+struct Person{
+    char name[20];
+    int years;
+};
+
+
+double averageAge(Person *arr, int personCount)
+{
+    int sum=0;
+    for(int i=0; i<personCount; i++)
+    {
+        sum+=arr[i].years;
+    }
+
+    return sum/personCount;
+}
+
+void printPerseon(Person *arr, int personCount)
+{
+    for(int i=0; i<personCount; i++)
+    {
+        cout<<"Name:"<<arr[i].name<<endl;
+        cout<<"Age:"<<arr[i].years<<endl;
+        cout<<endl;
+    }
+
+}
+
+
+void sortPeopleByAge(Person *arr, int personCount)
+{
+    for(int i=0; i<personCount; i++)
+    {
+        for(int j=0; j<personCount-1; j++)
+        {
+            if(arr[j].years>arr[j+1].years)
+            {
+                swap(arr[j].years, arr[j].years);
+            }
+        }
+    }
+}
+int main()
+{
+
+    Person arr[5];
+    for(int i=0; i<5; i++)
+    {
+        cin>>arr[i].name;
+        cin>>arr[i].years;
+    }
+
+    cout<<"Average age of people is: "<<averageAge(arr,5);
+
+    cout<<"Array before sorting"<<endl;
+    printPerseon(arr,5);
+
+
+
+
+    return 0;
+}
