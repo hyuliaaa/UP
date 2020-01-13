@@ -1,0 +1,30 @@
+#include <cstring>
+#include <iostream>
+using namespace std;
+const int SZ=1000;
+
+char *strDuplicate (char *str)
+{
+    char *copyStr=new char[strlen(str)+1];
+    for(int i=0; i<strlen(str); i++)
+    {
+        copyStr[i]=str[i];
+    }
+    return copyStr;
+}
+
+int main() {
+
+    char str[SZ];
+    cin.getline(str,SZ);
+
+    char *newStr=strDuplicate(str);
+    cout<<newStr<<endl;
+
+
+
+
+
+    return 0;
+}
+
