@@ -40,6 +40,8 @@ int main()
     char *ptr;
     ptr=convertNumberToChar(num);
     cout<<ptr<<endl;
+    
+    delete ptr;
 
     return 0;
 }
