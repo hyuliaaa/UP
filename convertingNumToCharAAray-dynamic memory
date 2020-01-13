@@ -1,0 +1,45 @@
+#include <cstring>
+#include <iostream>
+using namespace std;
+const int SZ=1000;
+
+char *convertNumberToChar(int num)
+{
+    int copyNum=num;
+    int numberOfDigits=0;
+    while(copyNum!=0)
+    {
+
+        numberOfDigits++;
+        copyNum/=10;
+    }
+
+
+    char *str=new char[numberOfDigits+1];
+    copyNum=num;
+
+    str[numberOfDigits]='\0';
+    while(copyNum!=0)
+    {
+        int lastDigit=copyNum%10;
+        char ch=lastDigit+'0';
+        str[numberOfDigits-1]=ch;
+        numberOfDigits--;
+
+        copyNum/=10;
+    }
+    return str;
+}
+
+int main()
+{
+
+    int num;
+    cin>>num;
+
+    char *ptr;
+    ptr=convertNumberToChar(num);
+    cout<<ptr<<endl;
+
+    return 0;
+}
