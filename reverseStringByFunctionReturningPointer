@@ -1,0 +1,37 @@
+#include <iostream>
+#include <cstring>
+
+using namespace std;
+
+const int SZ = 1000;
+
+char *reverse(char *str)
+{
+    char *newStr= new char [strlen(str)+1];
+    int h=strlen(str)-1;
+    for(int i=0; str[i]; i++)
+    {
+        newStr[h]=str[i];
+        h--;
+    }
+
+    return newStr;
+}
+
+int main()
+{
+    char str1[SZ];
+    cin.getline(str1,SZ);
+
+    char *newStr=reverse(str1);
+    cout<<newStr<<endl;
+    delete newStr;
+
+
+
+
+    return 0;
+}
+
+
+
