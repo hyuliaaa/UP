@@ -7,7 +7,7 @@ int main()
     ///creating an output object
     ofstream outFile;
     ///this creates a new file with the given name
-    outFile.open("Output.txt");
+    outFile.open("Output.txt", std::ios::app); // the last ios::app appends the new information to the oldest one,while wethout it the file is rewritten again
     ///checking if file is opened correctly
     if(!outFile)
     {
