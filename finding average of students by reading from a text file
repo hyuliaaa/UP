@@ -1,0 +1,71 @@
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+int numberOfPoints(string &answer, string &response)
+{
+     int numPoints=0;
+     for(int i=0; i<answer.size();i++)
+     {
+         if(response[i]==answer[i])
+         {
+             numPoints++;
+         }
+     }
+     return numPoints;
+}
+
+int main()
+{
+    /// creating an object of fstream type
+    std::fstream inFile;
+    ///trying to open the file
+    inFile.open("text.txt");
+
+    ///checking if we can open the file
+    if(!inFile)
+    {
+        cerr<<"Problem opening file"<<endl;
+        return 1;
+
+    }
+
+   string answers;
+   inFile>>answers;
+
+   string name;
+   string response;
+   int totalStudents=0;
+   double averageScore=0;
+
+   cout<<"+++++++++++++"<<endl;
+   while(inFile>>name>>response)
+   {
+       totalStudents++;
+       int score = numberOfPoints(answers,response);
+       averageScore+=score;
+       cout<<name<<" "<<score<<endl;
+   }
+
+   cout<<"+++++++++++++"<<endl;
+   cout<<"average: "<<averageScore/totalStudents;
+
+
+    inFile.close();
+
+    return 0;
+}
+
+
+
+//example text file
+ABCDE
+Frank
+ABCDE
+Larry
+ABCAC
+Moe
+ABDEF
+Hyuli
+ABGTH
