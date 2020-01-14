@@ -1,0 +1,33 @@
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+int main()
+{
+    /// creating an object of fstream type
+    std::fstream inFile;
+    ///trying to open the file
+    inFile.open("text.txt");
+
+    ///checking if we can open the file
+    if(!inFile)
+    {
+        cerr<<"Problem opening file"<<endl;
+        return 1;
+
+    }
+
+    ///creating an object to hold the value read from the file
+    std::string greeting;
+    inFile>>greeting;
+    cout<<greeting<<endl;
+
+
+
+
+    return 0;
+}
+
+
+
