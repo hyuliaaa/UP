@@ -1,0 +1,101 @@
+#include <iostream>
+#include <cstring>
+
+using namespace std;
+
+const int SZ = 1000;
+
+bool contains(char *arr, char c)
+{
+    for(int i=0; arr[i]; i++)
+    {
+        if(arr[i]==c)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+char *removeRepeats(char arr[])
+{
+    int H[26]= {0};
+    for(int i=0; arr[i]; i++)
+    {
+        H[arr[i]-97]+=1;
+    }
+
+    int counter=0;
+    for(int i=0; i<26; i++)
+    {
+        if(H[i]>=1)
+        {
+            counter++;
+        }
+    }
+
+
+    char *newStr=new char[counter+1];
+    int h=0;
+    for(int i=0; i<26; i++)
+    {
+
+        if(H[i]>=1)
+        {
+
+
+            newStr[h]= (char)(i+97);
+            h++;
+        }
+    }
+    newStr[h]='\0';
+    return newStr;
+}
+
+char *intersectionOfStr(char *str1, char *str2)
+{
+    int sameElements=0;
+    for(int i=0; str1[i]; i++)
+    {
+        for(int j=0; str2[j]; j++)
+        {
+            if(contains(str1,str2[j]))
+            {
+                sameElements++;
+            }
+        }
+    }
+    char *newStr=new char[sameElements+1];
+    int h=0;
+    for(int i=0; str2[i]; i++)
+    {
+        if(contains(str1,str2[i]))
+        {
+            newStr[h]=str2[i];
+            h++;
+        }
+    }
+    newStr[h]='\0';
+
+    return removeRepeats(newStr);
+}
+
+int main()
+{
+    char str1[SZ];
+    cin.getline(str1,SZ);
+
+    char str2[SZ];
+    cin.getline(str2,SZ);
+
+    char *newStr=intersectionOfStr(str1,str2);
+    cout<<newStr<<endl;
+
+    delete newStr;
+
+
+    return 0;
+}
+
+
+
