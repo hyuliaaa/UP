@@ -1,0 +1,35 @@
+#include <iostream>
+#include <cstring>
+
+using namespace std;
+
+const int SZ = 1000;
+
+char *cdr(char *str)
+{
+    char *newStr= new char [strlen(str)];
+    int h=0;
+    for(int i=1 ;str[i]; i++)
+    {
+        newStr[h]=str[i];
+        h++;
+    }
+    return newStr;
+}
+
+int main()
+{
+    char str1[SZ];
+    cin.getline(str1,SZ);
+    char *newStr=cdr(str1);
+    cout<<newStr<<endl;
+    delete newStr;
+
+
+
+
+    return 0;
+}
+
+
+
