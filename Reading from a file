@@ -22,6 +22,8 @@ int main()
     std::string greeting;
     inFile>>greeting;
     cout<<greeting<<endl;
+    
+    inFile.close();
 
 
 
