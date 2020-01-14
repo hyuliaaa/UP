@@ -1,0 +1,31 @@
+#include <iostream>
+#include <fstream>
+using namespace std;
+
+int main()
+{
+    ///creating an output object
+    ofstream outFile;
+    ///this creates a new file with the given name
+    outFile.open("Output.txt");
+    ///checking if file is opened correctly
+    if(!outFile)
+    {
+        cerr<<"The file could not be created"<<endl;
+        return 1;
+    }
+
+    string line;
+    cout<<"Enter something to write to file:";
+    getline(cin,line);
+    ///writing to the file
+    outFile<<line<<endl;
+    outFile.close();
+
+
+
+    return 0;
+}
+
+
+
