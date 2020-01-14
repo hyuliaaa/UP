@@ -19,7 +19,7 @@ int numberOfPoints(string &answer, string &response)
 int main()
 {
     /// creating an object of fstream type
-    std::fstream inFile;
+    std::ifstream inFile;
     ///trying to open the file
     inFile.open("text.txt");
 
