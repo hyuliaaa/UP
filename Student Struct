@@ -51,6 +51,7 @@ int main()
     input(st,n);
 
     findStudent(st,81779,n);
+    delete []st;
 
     return 0;
 }
