@@ -1,0 +1,62 @@
+#include <iostream>
+#include <cstring>
+const int SZ=256;
+
+//change the sentence this was fun -> histay asway unfay
+//the first letter of the word we put it at last place and after that we add "ay" to it :)
+using namespace std;
+
+///function that changes just one word according to the given rules
+void shiftWordByOne(char *str)
+{
+    int len=strlen(str);
+    int temp=str[0];
+    for(int i=0; i<len-1; i++)
+    {
+        str[i]=str[i+1];
+    }
+    str[len-1]=temp;
+    str[len]='a';
+    str[len+1]='y';
+    str[len+2]='\0';
+
+    cout<<str;
+}
+///my idea was to separate each word of the sentence into a new string and give it to shiftWordByOne function
+void change(char *str)
+{
+    int k=0;
+    char newStr[256];
+    int len=strlen(str);
+    for(int i=0; i<=len; i++)
+    {
+
+        if(str[i]==' ' || str[i]=='\0')
+        {
+            int h=0;
+            for(int j=k; j<i; j++)
+            {
+
+                newStr[h]=str[j];
+                h++;
+
+            }
+            newStr[h]='\0';
+
+            shiftWordByOne(newStr);
+            cout<<" ";
+            k=i+1;
+        }
+
+
+    }
+
+
+}
+int main()
+{
+        char str[SZ];
+        cin.getline(str,SZ);
+        change(str);
+        return 0;
+}
