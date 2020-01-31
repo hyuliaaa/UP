@@ -25,7 +25,7 @@ int main()
 
     char *newStr=reverse(str1);
     cout<<newStr<<endl;
-    delete newStr;
+    delete []newStr;
 
 
 
