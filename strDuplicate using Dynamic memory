@@ -21,7 +21,7 @@ int main() {
     char *newStr=strDuplicate(str);
     cout<<newStr<<endl;
     
-    delete newStr;
+    delete []newStr;
 
 
 
