@@ -1,0 +1,49 @@
+#include <cstring>
+#include <iostream>
+using namespace std;
+const int SZ=1000;
+
+void sortLexicographically(char m[][SZ], int n)
+{
+    char temp[50];
+    for(int i=0; i<n-1; i++)
+    {
+        for(int j=i+1; j<n; j++)
+        {
+            if(strcmp(m[i],m[j])>0)
+            {
+                strcpy(temp,m[i]);
+                strcpy(m[i],m[j]);
+                strcpy(m[j],temp);
+            }
+        }
+    }
+}
+
+
+int main()
+{
+
+    char m[SZ][SZ];
+    int n;
+    cin>>n;
+    cin.ignore();
+
+    for(int i=0; i<n; i++)
+    {
+
+        cin.getline(m[i],SZ);
+
+
+
+    }
+
+    sortLexicographically(m,n);
+
+    for(int i=0;i<n; i++)
+    {
+        cout<<m[i]<<endl;
+    }
+
+    return 0;
+}
