@@ -1,0 +1,126 @@
+#include <iostream>
+#include <cstring>
+#include <fstream>
+using namespace std;
+const int SZ = 1000;
+
+struct Planet{
+    char name[30];
+    double distanceFromSun;
+    double diameter;
+    double mass;
+};
+
+void inputPlanet(Planet p, ofstream &outFile)
+{
+    outFile<<"Enter name for the planet: ";
+    cin.getline(p.name,30);
+
+    outFile<<"Enter distance:" ;
+    cin>>p.distanceFromSun;
+
+    outFile<<"Enter diameter:";
+    cin>>p.diameter;
+
+    outFile<<"Enter mass: ";
+    cin>>p.mass;
+
+
+}
+
+void outputPlanet(Planet p, ostream & outFile)
+{
+    outFile<<"Name:" <<p.name<<endl;
+    outFile<<"Distance from Sun:"<<p.distanceFromSun<<endl;
+    outFile<<"Diameter:" <<p.diameter<<endl;
+    outFile<<"Mass: "<<p.mass<<endl;
+}
+
+double secondsTillLightReachSun(Planet p)
+{
+    int lightVelocity=299792;
+    return p.distanceFromSun/lightVelocity;
+}
+
+
+void inputPlanets(Planet planets[], int n )
+{
+    for(int i=0; i<n; i++)
+    {
+        cin.ignore();
+        cout<<"enter name:";
+        cin.getline(planets[i].name,30);
+        cout<<"enter distance form sun:";
+        cin>>planets[i].distanceFromSun;
+        cout<<"enter diameter: ";
+        cin>>planets[i].diameter;
+        cout<<"Enter mass:";
+        cin>>planets[i].mass;
+    }
+}
+
+void outputPlanets(Planet planets[], int n, ostream & outFile)
+{
+    for(int i=0; i<n; i++)
+    {
+        outFile<<planets[i].name<<endl;
+        outFile<<planets[i].distanceFromSun<<endl;
+        outFile<<planets[i].diameter<<endl;
+        outFile<<planets[i].mass<<endl;
+        outFile<<endl;
+    }
+}
+
+void greatestDiameter(Planet planets[], int n, ostream & outFile)
+{
+    double greatesDiam=-1;
+    for(int i=0; i<n; i++)
+    {
+        if(planets[i].diameter>greatesDiam)
+        {
+            greatesDiam=planets[i].diameter;
+
+        }
+    }
+
+    for(int i=0; i<n; i++)
+    {
+        if(planets[i].diameter==greatesDiam)
+        {
+            outFile<<planets[i].name<<endl;
+            outFile<<planets[i].diameter<<endl;
+        }
+    }
+}
+
+int main()
+{
+    ofstream outFile;
+    outFile.open("Planet.txt");
+
+
+
+    if(!outFile)
+    {
+         cerr<<"The file could not be created";
+         return 1;
+    }
+
+    int n;
+    cin>>n;
+    Planet *p=new Planet[n];
+    inputPlanets(p,n);
+    outFile<<endl;
+    outputPlanets(p,n, outFile);
+
+
+    delete []p;
+    outFile.close();
+
+
+
+
+    return 0;
+
+}
+
