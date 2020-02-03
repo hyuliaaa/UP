@@ -1,0 +1,84 @@
+#include <iostream>
+#include <cstring>
+#include <fstream>
+using namespace std;
+const int SZ = 1000;
+
+char *strDuplicates(const char *str)
+{
+    int counter=0;
+    int H[26]= {0};
+    for(int i=0; str[i]; i++)
+    {
+        H[str[i]-97]+=1;
+
+    }
+
+    for(int i=0; i<26; i++)
+    {
+        if(H[i]>=1)
+        {
+            counter++;
+        }
+    }
+
+    char *newStr= new char[counter+1];
+    int h=0;
+    for(int i=0; i<26; i++)
+    {
+        if(H[i]>=1)
+        {
+            newStr[h]=(char)(i+97);
+            h++;
+        }
+    }
+    newStr[h]='\0';
+
+    return newStr;
+}
+
+
+char *removeDuplicate(char str[])
+{
+    // Used as index in the modified string
+    int index = 0;
+    // Traverse through all characters
+    for (int i=0; str[i]; i++)
+    {
+        // Check if str[i] is present before it
+        int j;
+        for (j=0; j<i; j++)
+        {
+            if (str[i] == str[j])
+            {
+                break;
+            }
+        }
+            // If not present, then add it to
+            // result.
+            if (j == i)
+            {
+                str[index] = str[i];
+                index++;
+            }
+        }
+        str[index]='\0';
+
+    return str;
+}
+
+
+
+int main()
+{
+    char str[SZ];
+    cin.getline(str,SZ);
+
+    char *p=removeDuplicate(str);
+    cout<<p<<endl;
+
+
+    return 0;
+
+}
+
