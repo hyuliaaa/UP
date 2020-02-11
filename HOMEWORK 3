@@ -1,0 +1,131 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+const int SZ=1000;
+
+void removeWord(char *arr, char *word)
+{
+    //removing word in a string by using 2D matrix
+    int i=0;
+    int col=0;
+    int row=0;
+
+    char matrix[SZ][SZ];
+    for (i = 0; arr[i] != '\0'; i++)
+    {
+        //when we reach the ' ' symbol, we put a terminating zero and we go to the next row of the matrix
+        if (arr[i] == ' ')
+        {
+            matrix[row][col] = '\0';
+            row++;
+            col = 0;
+        }
+        //otherwise we just fill the row with the values
+        else
+        {
+            matrix[row][col] = arr[i];
+            col++;
+        }
+    }
+
+    matrix[row][col] = '\0';
+    col = 0;
+
+    for (i = 0; i <= row ; i++)
+    {
+        //if we find a match we put a terminating zero
+        if (strcmp(matrix[i], word) == 0)
+        {
+            matrix[i][col] = '\0';
+        }
+    }
+
+
+    col = 0;
+
+
+    for (i = 0; i <= row ; i++)
+    {
+        if (matrix[i][col] == '\0')
+            continue;
+        else
+           cout<<matrix[i]<<" ";
+
+    }
+
+
+}
+
+char *toReplaceWords(char *str, char *word, char *toReplace)
+{
+    ///в лекцията на гл.ас. д-р. Нора Ангелова за Низове, тя беше показала употребата на тези функции, затова би трябвало
+    ///да е разрешено и ние да ги използваме.
+    //allocating memory for the new string
+    char *newStr=new char[strlen(str)-strlen(word)+strlen(toReplace)+1];
+    char *ptr;
+
+
+    if(!(ptr= strstr(str,word)))
+        return nullptr;
+
+    int positionOfFirstMatch=ptr-str;
+    //copying the first characters till we reach the match
+    strncpy(newStr,str,ptr-str);
+    newStr[ptr-str]='\0';
+    //concatenating the new word
+    strcat(newStr,toReplace);
+    //concatenating the rest of the string
+    strcat(newStr,str+strlen(word)+positionOfFirstMatch);
+    //copying the new string to the old string
+    strcpy(str,newStr);
+
+    return str;
+}
+
+void testReplaceFun()
+{
+    cout<<"Enter a string: ";
+    char str[SZ];
+    cin.getline(str,SZ);
+    cout<<"Enter a word to search:";
+    char word[SZ];
+    cin.getline(word,SZ);
+    cout<<"Enter a word to replace: ";
+    char toReplace[SZ];
+    cin.getline(toReplace,SZ);
+
+
+    char *current = str;
+    do
+    {
+        current = toReplaceWords(current,word,toReplace);
+    }
+    while (current);
+    // returns the original string when the word we are looking for is not found and so we do not do replacement
+    cout<<str<<endl;
+    delete current;
+}
+
+void testRemoveFun()
+{
+    cout<<"Enter a string: ";
+    char str[SZ];
+    cin.getline(str,SZ);
+
+    cout<<"Enter a word to remove:";
+    char word[SZ];
+    cin.getline(word,SZ);
+
+    removeWord(str,word);
+
+}
+
+int main()
+{
+    testRemoveFun();
+    cout<<endl;
+   // testReplaceFun();
+
+
+    return 0;
+}
