@@ -1,0 +1,588 @@
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+bool shuffle(char str1[], char str2[], char str3[])
+{
+
+    if(strlen(str1)+strlen(str2)!=strlen(str3))
+    {
+        return false;
+    }
+
+    //table which will contain all the letters from the alphabet
+    int H[26]={0};
+
+    strcat(str1,str2);
+    for(int i=0; str1[i]; i++)
+    {
+        H[str1[i]-97]+=1;
+    }
+
+    for(int i=0; str3[i]; i++)
+    {
+        H[str3[i]-97]-=1;
+    }
+
+    for(int i=0; i<26; i++)
+    {
+        if(H[i]!=0)
+        {
+            return false;
+        }
+    }
+
+    return true;
+}
+
+int main()
+{
+    cout<<"Enter the first string: ";
+    char str1[255];
+    cin.getline(str1,255);
+
+    cout<<"Enter the second string: ";
+    char str2[255];
+    cin.getline(str2,255);
+
+    cout<<"Enter the third string: ";
+    char str3[510];
+    cin.getline(str3,510);
+
+    if(shuffle(str1,str2,str3))
+    {
+        cout<<"true";
+    }
+    else
+    {
+        cout<<"false";
+    }
+
+
+    return 0;
+}
+
+
+
+  	#include <iostream>
+const int SZ=100;
+using namespace std;
+
+void printArray(int arr[], int n, int k)
+{
+    int sum=0;
+
+    for(int i=0; i<n; i++)
+    {
+        sum+=arr[i];
+    }
+
+    if(sum==k)
+    {
+        cout<<'(';
+        for (int i = 0; i < n; i++)
+        {
+            cout << arr[i] << " ";
+        }
+        cout<<')';
+        cout << endl;
+    }
+}
+
+
+void generateAllBooleanVectors(int n, int arr[], int i, int k)
+{
+    if (i == n)
+    {
+        printArray(arr, n,k);
+        return;
+    }
+
+
+    arr[i] = 1;
+    generateAllBooleanVectors(n, arr, i + 1,k);
+
+
+    arr[i] = 0;
+    generateAllBooleanVectors(n, arr, i + 1,k);
+}
+
+
+int main()
+{
+    cout << "Enter the length of the vector: ";
+    int n;
+    cin>>n;
+
+    cout<<"Enter sum of elements: ";
+    int k;
+    cin>>k;
+
+
+    int arr[SZ];
+    generateAllBooleanVectors(n, arr, 0, k);
+
+
+
+    return 0;
+}
+
+
+
+
+#include <iostream>
+#include <cmath>
+
+
+using namespace std;
+
+long long recursiveFunction(int n, int x, int y, int z)
+{
+    if(n==0)
+    {
+        return z;
+    }
+
+    return x*recursiveFunction(floor(n/2),x,y,z)+ y*recursiveFunction(n-1,x,y,z);
+}
+
+int main()
+{
+    int lastThreeDigits=779;
+    int z=lastThreeDigits%10;
+
+    lastThreeDigits/=10;
+    int y=lastThreeDigits%10;
+
+    lastThreeDigits/=10;
+    int x=lastThreeDigits%10;
+
+    cout<<"Enter n: ";
+    int n;
+    cin>>n;
+
+    cout<<recursiveFunction(n,x,y,z);
+
+    //recursiveFunction(10)=12856231332
+
+
+
+
+    return 0;
+}
+
+
+#include <iostream>
+using namespace std;
+const int SZ=100;
+
+void inputMatrix(int matrix[][SZ], int n)
+{
+    for(int i=0; i<n; i++)
+    {
+        for(int j=0; j<n; j++)
+        {
+            cin>>matrix[i][j];
+        }
+    }
+}
+
+bool isDiagonalDominantMatrix(int matrix[][SZ], int n)
+{
+    for(int i=0; i<n; i++)
+    {
+        int sum=0;
+        for(int j=0; j<n; j++)
+        {
+            if(i!=j)
+            {
+                sum+=abs(matrix[i][j]);
+            }
+        }
+
+        if(abs(matrix[i][i])<sum)
+        {
+            return false;
+        }
+
+
+
+    }
+    return true;
+
+}
+
+int main()
+{
+    int matrix[SZ][SZ];
+    cout<<"Enter a number between 3 and 23: ";
+    int n;
+    cin>>n;
+    if(n<3 || n>23)
+    {
+        cout<<"You have entered an invalid number: ";
+        return 0;
+    }
+    inputMatrix(matrix,n);
+    cout<<endl;
+    if(isDiagonalDominantMatrix(matrix,n))
+    {
+        cout<<"True";
+    }
+    else
+    {
+        cout<<"False";
+    }
+    return 0;
+}
+
+
+#include <iostream>
+using namespace std;
+
+const int SZ=100;
+
+void inputMatrix(int A[][SZ], int n, int m)
+{
+    for(int i=0; i<n ; i++)
+    {
+        for(int j=0; j<m; j++)
+        {
+            cin>>A[i][j];
+        }
+    }
+}
+
+bool saddlePoint(int A[][SZ], int n, int m)
+{
+
+    int column=0;
+    int i=0;
+    int j;
+    int minElement=INT_MAX;
+    int maxElement=INT_MIN;
+
+    for(i=0; i<n; i++)
+    {
+
+        minElement=INT_MAX;
+        maxElement=INT_MIN;
+
+        for(j=0; j<m; j++)
+        {
+
+            if(A[i][j]>maxElement)
+            {
+
+                maxElement=A[i][j];
+            }
+
+        }
+
+        int k=0;
+        for(int j=0; j<m; j++)
+        {
+            if(maxElement==A[i][j])
+            {
+                for( k=0; k<n; k++)
+                {
+                    if(A[k][j]<minElement)
+                    {
+                        minElement=A[k][j];
+                        column=j;
+                    }
+                }
+            }
+
+
+        }
+        if(minElement==maxElement)
+        {
+            cout<<"("<<i<<", "<<column<<")"<<endl;
+            return true;
+        }
+    }
+    return false;
+}
+
+
+int main()
+{
+
+    cout<<"Enter first dimension of the matrix: ";
+    int n;
+    cin>>n;
+    cout<<"Enter second dimension of the matrix: ";
+    int m;
+    cin>>m;
+    int A[SZ][SZ];
+    cout<<"Input matrix: ";
+    inputMatrix(A,n,m);
+
+
+    if(!saddlePoint(A,n, m))
+    {
+        cout<<"No saddle point! "<<endl;
+    }
+    return 0;
+}
+
+
+
+
+#include <iostream>
+using namespace std;
+const int SZ=100;
+
+void inputMatrix(int matrix[][SZ], int n, int m)
+{
+    for(int i=0; i<n; i++)
+    {
+        for(int j=0; j<m ;j++)
+        {
+            cin>>matrix[i][j];
+        }
+    }
+}
+
+void swapElements(int matrix[][SZ], int n, int m)
+{
+    for(int i=0; i<n; i++)
+    {
+        for(int j=0; j<m; j++)
+        {
+            if(j>i)
+            {
+                if(matrix[i][j]<matrix[j][i])
+                {
+                    int temp=matrix[i][j];
+                    matrix[i][j]=matrix[j][i];
+                    matrix[j][i]=temp;
+                }
+            }
+        }
+    }
+}
+
+void printMatrix(int matrix[][SZ], int n, int m)
+{
+    for(int i=0; i<n; i++)
+    {
+        for(int j=0; j<m; j++)
+        {
+            cout<<matrix[i][j]<<" ";
+        }
+        cout<<endl;
+    }
+}
+
+int main()
+{
+    //в условието на задачата не беше даден пример какво тояно трябва да прави програмата, когато имаме матрица, която не е квадратна
+    //и най-вече кое се приема за главен диагонал, ако имаме правоъгълна матрица???
+
+
+
+    int matrix[SZ][SZ];
+    cout<<"Enter first dimension of matrix: ";
+    int n;
+    cin>>n;
+    cout<<"Enter second dimension of matrix: ";
+    int m;
+    cin>>m;
+
+    inputMatrix(matrix,n,m);
+    cout<<endl;
+    swapElements(matrix,n,m);
+    printMatrix(matrix,n,m);
+
+    return 0;
+}
+
+
+
+
+#include <iostream>
+#include <cstring>
+
+
+using namespace std;
+const int SZ = 100;
+
+//function which finds a word in a column from bottom to top and from top to bottom
+bool findWordInColumn(char matrix[][SZ], char word[], int x, int y, int length, int n, int m)
+{
+	int len = strlen(word);
+	if (length == len)
+	{
+		return true;
+
+	}
+
+	if (x < 0 || y < 0 || x >= n || y >= m)
+	{
+		return false;
+	}
+
+	if (matrix[x][y] == word[length])
+	{
+		char temp = matrix[x][y];
+		//mark the position as visited
+		matrix[x][y] = '$';
+		bool rest = findWordInColumn(matrix, word, x + 1, y, length + 1, n, m) || findWordInColumn(matrix, word, x - 1, y, length + 1, n, m);
+
+
+		//unmark the visited cell
+		matrix[x][y] = temp;
+		return rest;
+
+	}
+	else
+	{
+		return false;
+	}
+}
+//function which finds a word in a row from left to right and from right to left
+bool findWordInRow(char matrix[][SZ], char word[], int x, int y, int length, int n, int m)
+{
+	int len = strlen(word);
+	if (length == len)
+	{
+		return true;
+
+	}
+
+	if (x < 0 || y < 0 || x >= n || y >= m)
+	{
+		return false;
+	}
+
+	if (matrix[x][y] == word[length])
+	{
+		char temp = matrix[x][y];
+
+		//mark the position as visited
+		matrix[x][y] = '$';
+		bool rest = findWordInRow(matrix, word, x, y + 1, length + 1, n, m) || findWordInRow(matrix, word, x, y - 1, length + 1, n, m);
+
+
+		//unmark the visited cell
+		matrix[x][y] = temp;
+		return rest;
+
+	}
+	else
+	{
+		return false;
+	}
+}
+
+
+
+bool matchWord(char matrix[][SZ], char word[], int n, int m)
+{
+	int len = strlen(word);
+	if (len > n || len > m)
+	{
+		return false;
+	}
+
+
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < m; j++)
+		{
+			if (matrix[i][j] == word[0])
+			{
+				if (findWordInColumn(matrix, word, i, j, 0, n, m) || findWordInRow(matrix, word, i, j, 0, n, m))
+				{
+					return true;
+				}
+			}
+		}
+	}
+	return false;
+}
+
+bool findSentence(char sentence[], char matrix[][SZ], int n, int m)
+{
+
+	int sentenceLen = strlen(sentence);
+	char word[SZ];
+	int j = 0;
+	for (int i = 0; i <= sentenceLen; i++)
+	{
+		if (sentence[i] != ' ' && sentence[i]!='\0')
+		{
+			word[j] = sentence[i];
+			j++;
+		}
+		else
+		{
+			word[j] = '\0';
+			if (matchWord(matrix, word, n, m) == false)
+			{
+
+				return false;
+
+			}
+
+			j = 0;
+		}
+	}
+	return true;
+
+}
+
+void inputMatrix(char matrix[][SZ], int n, int m)
+{
+	for (int i = 0; i < n; i++)
+	{
+		for (int j = 0; j < m; j++)
+		{
+			cin >> matrix[i][j];
+		}
+	}
+}
+int main()
+{
+	cout << "Enter a word to search: ";
+	char word[SZ];
+	cin.getline(word, SZ);
+
+	cout << "Enter first dimension: ";
+	int n;
+	cin >> n;
+
+	cout << "Enter second dimension: ";
+	int m;
+	cin >> m;
+
+	cout << "Enter matrix: " << endl;
+	char matrix[SZ][SZ];
+	inputMatrix(matrix, n, m);
+
+
+
+
+	cout << matchWord(matrix, word, n, m) << endl;
+
+	cin.ignore();
+	cout << "Enter a sentence to search: ";
+	char sentence[SZ];
+	cin.getline(sentence, SZ);
+
+	if(findSentence(sentence, matrix, n, m))
+    {
+        cout<<"All words are found!";
+    }
+    else
+    {
+        cout<<"Not all words in the sentence are found!";
+    }
+
+
+
+
+	return 0;
+}
